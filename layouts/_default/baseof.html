@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    {{- partial "head.html" . -}}
+    <body class="xhas-navbar-fixed-top">
+      {{ block "set-layout" . }}
+      {{ end }}
+      {{- partial "header.html" . -}}
+      <div class="container">
+        <div class="content main-content">
+        <div class="columns">
+            <div class="column is-one-half">
+              {{ partial "info.html" . }}
+            </div>
+            <div class="column is-one-half">
+              <div class="card">
+                <div class="card-content">
+                  {{ if gt 10 ( len .Content )}}
+                  {{(site.GetPage "/").Content}}
+                  {{ end }}
+                  {{- block "main" . }}
+                  {{- end }}
+                </div>
+              </div>
+            </div>
+        </div>
+          
+        </div>
+      </div>
+        {{- partial "footer.html" . -}}
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<table class="table is-hoverable is-bordered is-striped">
+  <tbody>
+    {{ partial "td" (dict "one" "DOT (.)" "two" .) }}
+    {{ partial "td" (dict "one" ".File" "two" .File) }}
+
+    {{ partial "td" (dict "one" ".Kind" "two" .Kind) }}
+    {{ partial "td" (dict "one" ".Type" "two" .Type) }}
+    {{ partial "td" (dict "one" ".Section" "two" .Section) }}
+    {{ partial "td" (dict "one" ".Sections" "two" (delimit .Sections ", ")) }}
+    
+    {{ partial "td" (dict "one" ".IsPage" "two" .IsPage) }}
+    {{ partial "td" (dict "one" ".IsNode" "two" .IsNode) }}
+    {{ partial "td" (dict "one" ".Pages" "two" (delimit .Pages ", ")) }}
+    {{ $hasresources := false }}{{ with .Resources }}{{ $hasresources = true }}{{ end }}
+    {{ partial "td" (dict "one" ".Resources" "two" $hasresources) }}
+  </tbody>
+</table>
+
+
+{{ partial "info/parent-sections.html" . }}
+
+{{ partial "info/sections.html" . }}
+
+{{ partial "info/pages.html" . }}
+
+{{ partial "info/regularpages.html" . }}
+
+{{ if $hasresources }}
+  <h3>Resources</h3>
+  {{ partial "info/resources.html" . }}
+{{ else }}
+  <h3>No Page Resources</h3>
+{{ end }}
